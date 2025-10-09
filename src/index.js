@@ -26,6 +26,8 @@ export default {
     let bearerToken = '';
     if (pathnameParts.length > 1) {
       const agency = pathnameParts[1];
+      console.log(`[MT]> agency: '${agency}'.`);
+      console.log(`[MT]> urlType: '${pathnameParts[2]}'.`);
       switch (agency) {
         case "ca_chambly_richelieu_carignan_citcrc": // exo CRC
           const secret = env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc;
