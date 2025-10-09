@@ -29,6 +29,7 @@ export default {
       switch (agency) {
         case "ca_longueuil_rtl":
           const secret = env.MT_GTFS_RT_ca_longueuil_rtl;
+          console.log(`[MT]> secret: ? '${secret.length}'`);
           if (pathnameParts.length > 2) {
             const urlType = pathnameParts[2];
             switch (urlType) {
