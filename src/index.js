@@ -51,12 +51,15 @@ export default {
         headers: { 'Content-Type': 'text/html' }
       });
     }
+    if (apiUrlWithSecret.length == 0) {
+        apiUrlWithSecret = apiUrl; // no secret in the URL
+    }
     const cacheUrl = new URL(apiUrl);
     const cacheKey = cacheUrl.toString();
     const cache = caches.default;
     let response = await cache.match(cacheKey);
     if (!response) {
-      console.log(`[MT]> NO Cache hit for: ${request.url} (${apiUrl}).`);
+      console.log(`[MT]> NO Cache hit for: '${apiUrl}'.`);
       const requestHeaders = new Headers();
       requestHeaders.append("Content-Type", "application/x-protobuf");
       if (bearerToken.length > 0) {
