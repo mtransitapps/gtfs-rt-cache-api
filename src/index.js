@@ -29,117 +29,117 @@ export default {
     console.log(`[MT]> agency: '${agency}'.`);
     console.log(`[MT]> urlType: '${urlType}'.`);
     switch (agency) {
-    case "ca_chambly_richelieu_carignan_citcrc": // exo CRC
-      switch (urlType) {
-        case SERVICE_ALERTS:
-        cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
-        apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/alert?token='; 
-        apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc;
-        break;
-      }
-      break;
-    case "ca_l_assomption_mrclasso": // exo LASSO
+      case "ca_chambly_richelieu_carignan_citcrc": // exo CRC
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
+            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/alert?token='; 
+            apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc;
+            break;
+        }
+        break;
+      case "ca_l_assomption_mrclasso": // exo LASSO
+        switch (urlType) {
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLASSO/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_l_assomption_mrclasso;
             break;
         }
         break;
-    case "ca_la_presqu_ile_citpi": // exo PI
+      case "ca_la_presqu_ile_citpi": // exo PI
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITPI/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_la_presqu_ile_citpi;
             break;
         }
         break;
-    case "ca_laurentides_citla": // exo LA
+      case "ca_laurentides_citla": // exo LA
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_laurentides_citla;
             break;
         }
         break;
-    case "ca_le_richelain_citlr": // exo LRRS (Le Richelain / Roussillon)
+      case "ca_le_richelain_citlr": // exo LRRS (Le Richelain / Roussillon)
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_le_richelain_citlr;
             break;
         }
         break;
-    case "ca_les_moulins_mrclm": // exo Terrebonne-Mascouche
+      case "ca_les_moulins_mrclm": // exo Terrebonne-Mascouche
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_les_moulins_mrclm;
             break;
         }
         break;
-    case "ca_longueuil_rtl":
+      case "ca_longueuil_rtl":
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://rtl.chrono-saeiv.com/api/opendata/v1/RTL/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_longueuil_rtl;
             break;
         }
         break;
-    case "ca_montreal_amt": // exo trains
+      case "ca_montreal_amt": // exo trains
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/TRAINS/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_montreal_amt;
             break;
         }
         break;
-    case "ca_richelieu_citvr": // exo VR
+      case "ca_richelieu_citvr": // exo VR
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_richelieu_citvr;
             break;
         }
         break;
-    case "ca_sherbrooke_sts":
+      case "ca_sherbrooke_sts":
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sherbrooke_sts;
             break;
         }
         break;
-    case "ca_sorel_varennes_citsv": // exo SV
+      case "ca_sorel_varennes_citsv": // exo SV
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sorel_varennes_citsv;
             break;
         }
         break;
-    case "ca_ste_julie_omitsju": // exo SJU
+      case "ca_ste_julie_omitsju": // exo SJU
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_ste_julie_omitsju;
             break;
         }
         break;
-    case "ca_sud_ouest_citso": // exo SO
+      case "ca_sud_ouest_citso": // exo SO
         switch (urlType) {
-            case SERVICE_ALERTS:
+          case SERVICE_ALERTS:
             cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sud_ouest_citso;
