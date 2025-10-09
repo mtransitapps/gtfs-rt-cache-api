@@ -63,7 +63,7 @@ export default {
         requestHeaders.append("Authorization", `Bearer ${bearerToken}`);
       }
       const apiRequest = new Request(apiUrlWithSecret, {
-        headers = requestHeaders
+        headers: requestHeaders
       });
       console.log(`[MT]> Fetching from '${apiUrl})'...`);
       response = await fetch(apiRequest);
