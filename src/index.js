@@ -165,9 +165,9 @@ export default {
     const cacheResponse = await cache.match(cacheKey);
     if (cacheResponse) {
       console.log(`[MT]> Cache hit for: ${request.url} (${apiUrl}).`);
-      console.log(`[MT]> cache response headers: ${cacheResponse.headers}.`);
+      // console.log(`[MT]> cache response headers: ${cacheResponse.headers}.`);
       const cacheTimestampString = cacheResponse.headers.get("X-MT-Timestamp");
-      console.log(`[MT]> cach timestamp string: ${cacheTimestampString}.`);
+      // console.log(`[MT]> cach timestamp string: ${cacheTimestampString}.`);
       if (cacheTimestampString == null) {
         console.log(`[MT]> Returning cache hit (no timestamp)`);
         return cacheResponse; // no cache timestamp -> return response
@@ -175,8 +175,10 @@ export default {
         const cacheTimestamp = parseInt(cacheTimestampString);
         console.log(`[MT]> cache timestamp: ${cacheTimestamp}.`);
         console.log(`[MT]> now: ${Date.now()}.`);
-        if (Date.now() - cacheTimestamp < tryRefreshAfterInMs) { // 1 minute
-          console.log(`[MT]> Returning cache hit (still fresh)`);
+        const howLongSinceCachedInMs = Date.now() - cacheTimestamp;
+        console.log(`[MT]> howLongSinceCachedInMs: ${howLongSinceCachedInMs}.`);
+        if (howLongSinceCachedInMs < tryRefreshAfterInMs) { // 1 minute
+          console.log(`[MT]> Returning cache hit (still fresh ${ howLongSinceCachedInMs / 1000 } sec)`);
           return cacheResponse; // to soon -> re-use cache
         } else {
           console.log(`[MT]> Cache hit is old, try to refresh...`);
