@@ -206,9 +206,9 @@ export default {
       if (cacheControl.length > 0) {
           newResponse.headers.append("Cache-Control", cacheControl);
       }
-      console.log(`[MT]> newResponse.headers["Cache-Control"]: ${newResponse.headers.get("Cache-Control")}.`);
+      // console.log(`[MT]> newResponse.headers["Cache-Control"]: ${newResponse.headers.get("Cache-Control")}.`);
       newResponse.headers.append("X-MT-Timestamp", Date.now());
-      console.log(`[MT]> newResponse.headers["X-MT-Timestamp"]: ${newResponse.headers.get("X-MT-Timestamp")}.`);
+      // console.log(`[MT]> newResponse.headers["X-MT-Timestamp"]: ${newResponse.headers.get("X-MT-Timestamp")}.`);
       // console.log(`[MT]> newResponse.headers: ${newResponse.headers}.`);
       ctx.waitUntil(cache.put(cacheKey, newResponse.clone()));
       console.log(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
