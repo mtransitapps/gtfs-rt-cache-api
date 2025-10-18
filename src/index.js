@@ -199,7 +199,7 @@ export default {
     console.log(`[MT]> Fetching from '${apiUrl})'...`);
     const fetchResponse = await fetch(apiRequest);
     console.log(`[MT]> Fetching from '${apiUrl})'... DONE`);
-    console.log(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
+    // console.log(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
     console.log(`[MT]> - fetched response status: ${fetchResponse.status}.`);
     if (fetchResponse.status == 200) {
       const newResponse = new Response(fetchResponse.body);
@@ -207,7 +207,7 @@ export default {
           newResponse.headers.append("Cache-Control", cacheControl);
       }
       newResponse.headers.append("X-MT-Timestamp", Date.now());
-      console.log(`[MT]> newResponse.headers: ${newResponse.headers}.`);
+      // console.log(`[MT]> newResponse.headers: ${newResponse.headers}.`);
       ctx.waitUntil(cache.put(cacheKey, newResponse.clone()));
       console.log(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
       console.log(`[MT]> Returning new fetched & cached response`);
