@@ -181,7 +181,7 @@ export default {
           console.log(`[MT]> Returning cache hit (still fresh ${ howLongSinceCachedInMs / 1000 } sec)`);
           return cacheResponse; // to soon -> re-use cache
         } else {
-          console.log(`[MT]> Cache hit is old, try to refresh...`);
+          console.log(`[MT]> Cache hit is ${ howLongSinceCachedInMs / 1000 } secs old, try to refresh...`);
         }
       }
     }
