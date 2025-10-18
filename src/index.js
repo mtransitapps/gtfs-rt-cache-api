@@ -1,16 +1,16 @@
 export default {
   async fetch(request, env, ctx) {
-    console.log(`[MT]> request url: '${request.url}'.`);
+    // console.log(`[MT]> request url: '${request.url}'.`);
 
     const requestUrl = new URL(request.url);
     // console.log(`[MT]> request url - host: '${requestUrl.host}'.`);
     // console.log(`[MT]> request url - origin: '${requestUrl.origin}'.`);
     // console.log(`[MT]> request url > search: '${requestUrl.search}'.`);
-    console.log(`[MT]> request url > pathname: '${requestUrl.pathname}'.`);
+    // console.log(`[MT]> request url > pathname: '${requestUrl.pathname}'.`);
     // const search = requestUrl.search;
     const pathname = requestUrl.pathname;
     const pathnameParts = pathname.split("/");
-    console.log(`[MT]> request url > pathname parts[${pathnameParts.length}]: '${pathnameParts}'.`);
+    // console.log(`[MT]> request url > pathname parts[${pathnameParts.length}]: '${pathnameParts}'.`);
 
     // /xx_city_agency/service-alerts
     // /xx_city_agency/trip-updates
@@ -169,12 +169,14 @@ export default {
       const cacheTimestampString = cacheResponse.headers.get("X-MT-Timestamp");
       console.log(`[MT]> cach timestamp string: ${cacheTimestampString}.`);
       if (cacheTimestampString == null) {
+        console.log(`[MT]> Returning cache hit (no timestamp)`);
         return cacheResponse; // no cache timestamp -> return response
       } else if (cacheTimestampString != null) {
         const cacheTimestamp = parseInt(cacheTimestampString);
         console.log(`[MT]> cache timestamp: ${cacheTimestamp}.`);
         console.log(`[MT]> now: ${Date.now()}.`);
         if (Date.now() - cacheTimestamp < tryRefreshAfterInMs) { // 1 minute
+          console.log(`[MT]> Returning cache hit (still fresh)`);
           return cacheResponse; // to soon -> re-use cache
         } else {
           console.log(`[MT]> Cache hit is old, try to refresh...`);
@@ -206,11 +208,14 @@ export default {
       console.log(`[MT]> newResponse.headers: ${newResponse.headers}.`);
       ctx.waitUntil(cache.put(cacheKey, newResponse.clone()));
       console.log(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
-      return newResponse; // return new cached response
+      console.log(`[MT]> Returning new fetched & cached response`);
+      return fetchResponse; // return new cached response
     } else {
       if (cacheResponse) {
+        console.log(`[MT]> Returning cache hit (fetch failed)`);
         return cacheResponse; // return "older" cached response
       }
+      console.log(`[MT]> Returning failed fetched reponse`);
       return fetchResponse; // return fetch response w/ error
     }
     // } else {
