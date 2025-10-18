@@ -34,7 +34,7 @@ export default {
       case "ca_chambly_richelieu_carignan_citcrc": // exo CRC
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc;
             break;
@@ -43,7 +43,7 @@ export default {
       case "ca_l_assomption_mrclasso": // exo LASSO
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLASSO/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_l_assomption_mrclasso;
             break;
@@ -52,7 +52,7 @@ export default {
       case "ca_la_presqu_ile_citpi": // exo PI
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITPI/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_la_presqu_ile_citpi;
             break;
@@ -61,7 +61,7 @@ export default {
       case "ca_laurentides_citla": // exo LA
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_laurentides_citla;
             break;
@@ -70,7 +70,7 @@ export default {
       case "ca_le_richelain_citlr": // exo LRRS (Le Richelain / Roussillon)
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_le_richelain_citlr;
             break;
@@ -79,7 +79,7 @@ export default {
       case "ca_les_moulins_mrclm": // exo Terrebonne-Mascouche
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_les_moulins_mrclm;
             break;
@@ -88,7 +88,7 @@ export default {
       case "ca_longueuil_rtl":
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://rtl.chrono-saeiv.com/api/opendata/v1/RTL/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_longueuil_rtl;
             break;
@@ -97,7 +97,7 @@ export default {
       case "ca_montreal_amt": // exo trains
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/TRAINS/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_montreal_amt;
             break;
@@ -106,7 +106,7 @@ export default {
       case "ca_richelieu_citvr": // exo VR
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_richelieu_citvr;
             break;
@@ -115,7 +115,7 @@ export default {
       case "ca_sherbrooke_sts":
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sherbrooke_sts;
             break;
@@ -124,7 +124,7 @@ export default {
       case "ca_sorel_varennes_citsv": // exo SV
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sorel_varennes_citsv;
             break;
@@ -133,7 +133,7 @@ export default {
       case "ca_ste_julie_omitsju": // exo SJU
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_ste_julie_omitsju;
             break;
@@ -142,7 +142,7 @@ export default {
       case "ca_sud_ouest_citso": // exo SO
         switch (urlType) {
           case SERVICE_ALERTS:
-            cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
+            // cacheControl = 's-maxage=30'; // minimum interval of 05 seconds between each call to our open data service.
             apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/alert?token='; 
             apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sud_ouest_citso;
             break;
@@ -200,13 +200,15 @@ export default {
     const fetchResponse = await fetch(apiRequest);
     console.log(`[MT]> Fetching from '${apiUrl})'... DONE`);
     // console.log(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
-    console.log(`[MT]> - fetched response status: ${fetchResponse.status}.`);
+    // console.log(`[MT]> - fetched response status: ${fetchResponse.status}.`);
     if (fetchResponse.status == 200) {
       const newResponse = new Response(fetchResponse.body);
-      if (cacheControl.length == 0) {
+      if (cacheControl.length > 0) {
           newResponse.headers.append("Cache-Control", cacheControl);
       }
+      console.log(`[MT]> newResponse.headers["Cache-Control"]: ${newResponse.headers.get("Cache-Control")}.`);
       newResponse.headers.append("X-MT-Timestamp", Date.now());
+      console.log(`[MT]> newResponse.headers["X-MT-Timestamp"]: ${newResponse.headers.get("X-MT-Timestamp")}.`);
       // console.log(`[MT]> newResponse.headers: ${newResponse.headers}.`);
       ctx.waitUntil(cache.put(cacheKey, newResponse.clone()));
       console.log(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
