@@ -20,7 +20,9 @@ export default {
     const VEHICLE_POSITIONS = "vehicle-positions";
 
     let cacheControl = '';
-    cacheControl = 's-maxage=60'; // DEBUG
+    // cacheControl = 's-maxage=60'; // 1h // DEBUG
+    cacheControl = 's-maxage=86400'; // 24h // DEBUG
+    let tryRefreshAfterInMs = 60000; // 1 minute
     let apiUrl = '';
     let apiUrlWithSecret = '';
     let bearerToken = '';
@@ -160,33 +162,60 @@ export default {
     const cacheUrl = new URL(apiUrl);
     const cacheKey = cacheUrl.toString();
     const cache = caches.default;
-    let response = await cache.match(cacheKey);
-    if (!response) {
-      console.log(`[MT]> NO Cache hit for: '${apiUrl}'.`);
-      const requestHeaders = new Headers();
-      requestHeaders.append("Content-Type", "application/x-protobuf");
-      if (bearerToken.length > 0) {
-        requestHeaders.append("Authorization", `Bearer ${bearerToken}`);
-      }
-      const apiRequest = new Request(apiUrlWithSecret, {
-        headers: requestHeaders
-      });
-      console.log(`[MT]> Fetching from '${apiUrl})'...`);
-      response = await fetch(apiRequest);
-      console.log(`[MT]> Fetching from '${apiUrl})'... DONE`);
-      console.log(`[MT]> Response.headers: ${response.headers}.`);
-      console.log(`[MT]> Response.status: ${response.status}.`);
-      if (response.status == 200) {
-        response = new Response(response.body);
-        if (cacheControl.length == 0) {
-            response.headers.append("Cache-Control", cacheControl);
-        }
-        ctx.waitUntil(cache.put(cacheKey, response.clone()));
-        console.log(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
-      }
-    } else {
+    const cacheResponse = await cache.match(cacheKey);
+    if (cacheResponse) {
       console.log(`[MT]> Cache hit for: ${request.url} (${apiUrl}).`);
+      console.log(`[MT]> cache response headers: ${cacheResponse.headers}.`);
+      const cacheTimestampString = cacheResponse.headers.get("X-MT-Timestamp");
+      console.log(`[MT]> cach timestamp string: ${cacheTimestampString}.`);
+      if (cacheTimestampString == null) {
+        return cacheResponse; // no cache timestamp -> return response
+      } else if (cacheTimestampString != null) {
+        const cacheTimestamp = parseInt(cacheTimestampString);
+        console.log(`[MT]> cache timestamp: ${cacheTimestamp}.`);
+        console.log(`[MT]> now: ${Date.now()}.`);
+        if (Date.now() - cacheTimestamp < tryRefreshAfterInMs) { // 1 minute
+          return cacheResponse; // to soon -> re-use cache
+        } else {
+          console.log(`[MT]> Cache hit is old, try to refresh...`);
+        }
+      }
     }
-    return response;
+    if (!cacheResponse) {
+      console.log(`[MT]> NO Cache hit for: '${apiUrl}'.`);
+    }
+    const requestHeaders = new Headers();
+    requestHeaders.append("Content-Type", "application/x-protobuf");
+    if (bearerToken.length > 0) {
+      requestHeaders.append("Authorization", `Bearer ${bearerToken}`);
+    }
+    const apiRequest = new Request(apiUrlWithSecret, {
+      headers: requestHeaders
+    });
+    console.log(`[MT]> Fetching from '${apiUrl})'...`);
+    const fetchResponse = await fetch(apiRequest);
+    console.log(`[MT]> Fetching from '${apiUrl})'... DONE`);
+    console.log(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
+    console.log(`[MT]> - fetched response status: ${fetchResponse.status}.`);
+    if (fetchResponse.status == 200) {
+      const newResponse = new Response(fetchResponse.body);
+      if (cacheControl.length == 0) {
+          newResponse.headers.append("Cache-Control", cacheControl);
+      }
+      newResponse.headers.append("X-MT-Timestamp", Date.now());
+      console.log(`[MT]> newResponse.headers: ${newResponse.headers}.`);
+      ctx.waitUntil(cache.put(cacheKey, newResponse.clone()));
+      console.log(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
+      return newResponse; // return new cached response
+    } else {
+      if (cacheResponse) {
+        return cacheResponse; // return "older" cached response
+      }
+      return fetchResponse; // return fetch response w/ error
+    }
+    // } else {
+    // console.log(`[MT]> Cache hit for: ${request.url} (${apiUrl}).`);
+    // }
+    // return response;
   }
 };
