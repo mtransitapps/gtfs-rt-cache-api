@@ -173,10 +173,10 @@ export default {
         return cacheResponse; // no cache timestamp -> return response
       } else if (cacheTimestampString != null) {
         const cacheTimestamp = parseInt(cacheTimestampString);
-        console.log(`[MT]> cache timestamp: ${cacheTimestamp}.`);
-        console.log(`[MT]> now: ${Date.now()}.`);
+        // console.log(`[MT]> cache timestamp: ${cacheTimestamp}.`);
+        // console.log(`[MT]> now: ${Date.now()}.`);
         const howLongSinceCachedInMs = Date.now() - cacheTimestamp;
-        console.log(`[MT]> howLongSinceCachedInMs: ${howLongSinceCachedInMs}.`);
+        // console.log(`[MT]> howLongSinceCachedInMs: ${howLongSinceCachedInMs}.`);
         if (howLongSinceCachedInMs < tryRefreshAfterInMs) { // 1 minute
           console.log(`[MT]> Returning cache hit (still fresh ${ howLongSinceCachedInMs / 1000 } sec)`);
           return cacheResponse; // to soon -> re-use cache
@@ -211,7 +211,7 @@ export default {
       ctx.waitUntil(cache.put(cacheKey, newResponse.clone()));
       console.log(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
       console.log(`[MT]> Returning new fetched & cached response`);
-      return fetchResponse; // return new cached response
+      return newResponse; // return new cached response
     } else {
       if (cacheResponse) {
         console.log(`[MT]> Returning cache hit (fetch failed)`);
