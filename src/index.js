@@ -219,7 +219,7 @@ export default {
         console.log(`[MT]> Returning cache hit (fetch failed)`);
         return cacheResponse; // return "older" cached response
       }
-      console.log(`[MT]> Returning failed fetched reponse`);
+      console.log(`[MT]> Returning failed (${fetchResponse.status}) fetched reponse`);
       return fetchResponse; // return fetch response w/ error
     }
     // } else {
