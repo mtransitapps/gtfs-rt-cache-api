@@ -216,7 +216,7 @@ export default {
       return newResponse; // return new cached response
     } else {
       if (cacheResponse) {
-        console.log(`[MT]> Returning cache hit (fetch failed)`);
+        console.log(`[MT]> Returning cache hit (fetch failed - ${fetchResponse.status})`);
         return cacheResponse; // return "older" cached response
       }
       console.log(`[MT]> Returning failed (${fetchResponse.status}) fetched reponse`);
