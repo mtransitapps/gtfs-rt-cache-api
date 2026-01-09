@@ -41,6 +41,7 @@ export default {
       case VEHICLE_POSITIONS:
         maxAgeInSec = 3600; // 1h
         tryRefreshAfterInMs = 30000; // 30 seconds
+        // TODO if API allows: tryRefreshAfterInMs = 10000; // 10 seconds
         break;
     }
     console.log(`[MT]> maxAgeInSec: '${maxAgeInSec}'.`);
