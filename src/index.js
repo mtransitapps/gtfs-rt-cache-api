@@ -56,8 +56,8 @@ export default {
         vehiclePositionsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=' + env.MT_GTFS_RT_ca_richelieu_citvr
       }
     };
-    // const agencyConfig = agencyConfigs[agency];
-    // console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
+    const agencyConfig = agencyConfigs[agency];
+    console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
     // if (agencyConfig) {
     //   switch (urlType) {
     //     case SERVICE_ALERTS:
