@@ -103,27 +103,27 @@ export default {
       },
       "ca_sherbrooke_sts": { // STS // min interval of 05 seconds between each call to service
         serviceAlertsUrl: 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/alert?token=',
-        serviceAlertsUrlWithSecret: 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/alert?token=' + env.MT_GTFS_RT_ca_sherbrooke_sts,
+        serviceAlertsUrlWithSecret: `https://sts.chrono-saeiv.com/api/opendata/v1/STS/alert?token=${env.MT_GTFS_RT_ca_sherbrooke_sts}`,
         vehiclePositionsUrl: 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/vehicleposition?token=',
-        vehiclePositionsUrlWithSecret: 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/vehicleposition?token=' + env.MT_GTFS_RT_ca_sherbrooke_sts
+        vehiclePositionsUrlWithSecret: `https://sts.chrono-saeiv.com/api/opendata/v1/STS/vehicleposition?token=${env.MT_GTFS_RT_ca_sherbrooke_sts}`
       },
       "ca_sorel_varennes_citsv": { // exo SV // min interval of 05 seconds between each call to service
         serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/alert?token=',
-        serviceAlertsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/alert?token=' + env.MT_GTFS_RT_ca_sorel_varennes_citsv,
+        serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/alert?token=${env.MT_GTFS_RT_ca_sorel_varennes_citsv}`,
         vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/vehicleposition?token=',
-        vehiclePositionsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/vehicleposition?token=' + env.MT_GTFS_RT_ca_sorel_varennes_citsv
+        vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/vehicleposition?token=${env.MT_GTFS_RT_ca_sorel_varennes_citsv}`
       },
       "ca_ste_julie_omitsju": { // exo SJU // min interval of 05 seconds between each call to service
         serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/alert?token=',
-        serviceAlertsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/alert?token=' + env.MT_GTFS_RT_ca_ste_julie_omitsju,
+        serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/alert?token=${env.MT_GTFS_RT_ca_ste_julie_omitsju}`,
         vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/vehicleposition?token=',
-        vehiclePositionsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/vehicleposition?token=' + env.MT_GTFS_RT_ca_ste_julie_omitsju
+        vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/vehicleposition?token=${env.MT_GTFS_RT_ca_ste_julie_omitsju}`
       },
       "ca_sud_ouest_citso": { // exo SO // min interval of 05 seconds between each call to service
         serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/alert?token=',
-        serviceAlertsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/alert?token=' + env.MT_GTFS_RT_ca_sud_ouest_citso,
+        serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/alert?token=${env.MT_GTFS_RT_ca_sud_ouest_citso}`,
         vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/vehicleposition?token=',
-        vehiclePositionsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/vehicleposition?token=' + env.MT_GTFS_RT_ca_sud_ouest_citso
+        vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/vehicleposition?token=${env.MT_GTFS_RT_ca_sud_ouest_citso}`
       }
     };
     let apiUrl = '';
