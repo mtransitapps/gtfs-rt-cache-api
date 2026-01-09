@@ -65,13 +65,13 @@ export default {
       console.log(`[MT]> agencyConfig: FOUND.`);
       switch (urlType) {
         case SERVICE_ALERTS:
-          apiUrl = serviceAlertsUrl || '';
-          apiUrlWithSecret = serviceAlertsUrlWithSecret || '';
+          apiUrl = agencyConfig.serviceAlertsUrl || '';
+          apiUrlWithSecret = agencyConfig.serviceAlertsUrlWithSecret || '';
           break;
         // TODO latter case TRIP_UPDATES:
         case VEHICLE_POSITIONS:
-          apiUrl = vehiclePositionsUrl || '';
-          apiUrlWithSecret = vehiclePositionsUrlWithSecret || '';
+          apiUrl = agencyConfig.vehiclePositionsUrl || '';
+          apiUrlWithSecret = agencyConfig.vehiclePositionsUrlWithSecret || '';
           break;
       }
       console.log(`[MT]> apiUrl: '${apiUrl}'.`);
