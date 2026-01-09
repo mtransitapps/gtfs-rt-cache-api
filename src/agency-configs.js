@@ -23,7 +23,7 @@ export const getAgencyConfigs = (env) => ({
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/vehicleposition?token=',
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/vehicleposition?token=${env.MT_GTFS_RT_ca_laurentides_citla}`
   },
-   "ca_le_richelain_citlr": { // exo LRRS (Le Richelain / Roussillon) // min interval of 05 seconds between each call to service
+  "ca_le_richelain_citlr": { // exo LRRS (Le Richelain / Roussillon) // min interval of 05 seconds between each call to service
     serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/alert?token=',
     serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/alert?token=${env.MT_GTFS_RT_ca_le_richelain_citlr}`,
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/vehicleposition?token=',
