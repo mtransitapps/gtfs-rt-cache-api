@@ -56,29 +56,27 @@ export default {
         vehiclePositionsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=' + env.MT_GTFS_RT_ca_richelieu_citvr
       }
     };
+    let apiUrl = '';
+    let apiUrlWithSecret = '';
+    let bearerToken = '';
     const agencyConfig = agencyConfigs[agency];
     console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
     if (agencyConfig) {
       console.log(`[MT]> agencyConfig: FOUND.`);
-    //   switch (urlType) {
-    //     case SERVICE_ALERTS:
-    //       apiUrl = serviceAlertsUrl || '';
-    //       apiUrlWithSecret = serviceAlertsUrlWithSecret || '';
-    //       break;
-    //     case TRIP_UPDATES:
-    //       // TODO latter
-    //       break;
-    //     case VEHICLE_POSITIONS:
-    //       apiUrl = vehiclePositionsUrl || '';
-    //       apiUrlWithSecret = vehiclePositionsUrlWithSecret || '';
-    //       break;
-    //   }
-    //   console.log(`[MT]> apiUrl: '${apiUrl}'.`);
-    //   console.log(`[MT]> apiUrlWithSecret: '${apiUrlWithSecret}'.`);
+      switch (urlType) {
+        case SERVICE_ALERTS:
+          apiUrl = serviceAlertsUrl || '';
+          apiUrlWithSecret = serviceAlertsUrlWithSecret || '';
+          break;
+        // TODO latter case TRIP_UPDATES:
+        case VEHICLE_POSITIONS:
+          apiUrl = vehiclePositionsUrl || '';
+          apiUrlWithSecret = vehiclePositionsUrlWithSecret || '';
+          break;
+      }
+      console.log(`[MT]> apiUrl: '${apiUrl}'.`);
+      console.log(`[MT]> apiUrlWithSecret: '${apiUrlWithSecret}'.`);
     }
-    let apiUrl = '';
-    let apiUrlWithSecret = '';
-    let bearerToken = '';
     switch (agency) {
       case "ca_chambly_richelieu_carignan_citcrc": // exo CRC
         switch (urlType) {
