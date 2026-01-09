@@ -2,8 +2,10 @@ export default {
   async fetch(request, env, ctx) {
     // console.log(`[MT]> request url: '${request.url}'.`);
     
-    // git branch > workers preview url <branch_name>.-gtfs-rt-cache-api.mtransit-apps.workers.dev
-    // (preview url => no logs :'( )
+    // Cloudflare Workers Preview URLs:
+    // git branch push > workers preview url:
+    // <branch_name>-gtfs-rt-cache-api.mtransit-apps.workers.dev
+    // Preview URLs => no logs :'(
 
 
     const requestUrl = new URL(request.url);
@@ -65,14 +67,14 @@ export default {
       "ca_laurentides_citla": { // exo LA // min interval of 05 seconds between each call to service
         serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/alert?token=',
         serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/alert?token=${env.MT_GTFS_RT_ca_laurentides_citla}`,
-        vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITPI/vehicleposition?token=',
+        vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/vehicleposition?token=',
         vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/vehicleposition?token=${env.MT_GTFS_RT_ca_laurentides_citla}`
       },
        "ca_le_richelain_citlr": { // exo LRRS (Le Richelain / Roussillon) // min interval of 05 seconds between each call to service
-        serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/alert?token=',
-        serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/alert?token=${env.MT_GTFS_RT_ca_le_richelain_citlr}`,
-        vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/vehicleposition?token=',
-        vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/vehicleposition?token=${env.MT_GTFS_RT_ca_le_richelain_citlr}`
+        serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/alert?token=',
+        serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/alert?token=${env.MT_GTFS_RT_ca_le_richelain_citlr}`,
+        vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/vehicleposition?token=',
+        vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/vehicleposition?token=${env.MT_GTFS_RT_ca_le_richelain_citlr}`
       },
       "ca_les_moulins_mrclm": { // exo Terrebonne-Mascouche // min interval of 05 seconds between each call to service
         serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/alert?token=',
@@ -94,9 +96,9 @@ export default {
       },
       "ca_richelieu_citvr": { // exo VR // min interval of 05 seconds between each call to service
         serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=',
-        serviceAlertsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=' + env.MT_GTFS_RT_ca_richelieu_citvr,
+        serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=${env.MT_GTFS_RT_ca_richelieu_citvr}`,
         vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=',
-        vehiclePositionsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=' + env.MT_GTFS_RT_ca_richelieu_citvr
+        vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=${env.MT_GTFS_RT_ca_richelieu_citvr}`
       },
       "ca_sherbrooke_sts": { // STS // min interval of 05 seconds between each call to service
         serviceAlertsUrl: 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/alert?token=',
