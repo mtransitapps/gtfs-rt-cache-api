@@ -35,10 +35,7 @@ export default {
         maxAgeInSec = 86400; // 24h
         tryRefreshAfterInMs = 60000; // 1 minute
         break;
-      case TRIP_UPDATES:
-        maxAgeInSec = 3600; // 1h
-        tryRefreshAfterInMs = 30000; // 30 seconds
-        break;
+      // TODO latter case TRIP_UPDATES:
       case VEHICLE_POSITIONS:
         maxAgeInSec = 3600; // 1h
         tryRefreshAfterInMs = 30000; // 30 seconds
@@ -130,9 +127,9 @@ export default {
     let apiUrlWithSecret = '';
     let bearerToken = '';
     const agencyConfig = agencyConfigs[agency];
-    console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
+    // console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
     if (agencyConfig) {
-      console.log(`[MT]> agencyConfig: FOUND.`);
+      // console.log(`[MT]> agencyConfig: FOUND.`);
       switch (urlType) {
         case SERVICE_ALERTS:
           apiUrl = agencyConfig.serviceAlertsUrl || '';
@@ -144,196 +141,11 @@ export default {
           apiUrlWithSecret = agencyConfig.vehiclePositionsUrlWithSecret || '';
           break;
       }
-      console.log(`[MT]> apiUrl: '${apiUrl}'.`);
-      console.log(`[MT]> apiUrlWithSecret: '${apiUrlWithSecret}'.`);
+      // console.log(`[MT]> apiUrl: '${apiUrl}'.`);
     }
-    // switch (agency) {
-    //   case "ca_chambly_richelieu_carignan_citcrc": // exo CRC
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_l_assomption_mrclasso": // exo LASSO
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLASSO/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_l_assomption_mrclasso;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLASSO/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_l_assomption_mrclasso;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_la_presqu_ile_citpi": // exo PI
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITPI/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_la_presqu_ile_citpi;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITPI/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_la_presqu_ile_citpi;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_laurentides_citla": // exo LA
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_laurentides_citla;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITLA/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_laurentides_citla;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_le_richelain_citlr": // exo LRRS (Le Richelain / Roussillon)
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_le_richelain_citlr;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/LRRS/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_le_richelain_citlr;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_les_moulins_mrclm": // exo Terrebonne-Mascouche
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_les_moulins_mrclm;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLM/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_les_moulins_mrclm;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_longueuil_rtl":
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://rtl.chrono-saeiv.com/api/opendata/v1/RTL/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_longueuil_rtl;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://rtl.chrono-saeiv.com/api/opendata/v1/RTL/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_longueuil_rtl;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_montreal_amt": // exo trains
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/TRAINS/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_montreal_amt;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/TRAINS/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_montreal_amt;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_richelieu_citvr": // exo VR
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_richelieu_citvr;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_richelieu_citvr;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_sherbrooke_sts":
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sherbrooke_sts;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://sts.chrono-saeiv.com/api/opendata/v1/STS/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sherbrooke_sts;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_sorel_varennes_citsv": // exo SV
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sorel_varennes_citsv;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSV/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sorel_varennes_citsv;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_ste_julie_omitsju": // exo SJU
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_ste_julie_omitsju;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/OMITSJU/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_ste_julie_omitsju;
-    //         break;
-    //     }
-    //     break;
-    //   case "ca_sud_ouest_citso": // exo SO
-    //     switch (urlType) {
-    //       case SERVICE_ALERTS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/alert?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sud_ouest_citso;
-    //         break;
-    //       case VEHICLE_POSITIONS:
-    //         // maxAgeInSec = 30; // minimum interval of 05 seconds between each call to our open data service.
-    //         apiUrl = 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/vehicleposition?token='; 
-    //         apiUrlWithSecret = apiUrl + env.MT_GTFS_RT_ca_sud_ouest_citso;
-    //         break;
-    //     }
-    //     break;
-    // }
     console.log(`[MT]> apiUrl: '${apiUrl}'`);
     if (apiUrl.length == 0) {
-      return new Response('404 not found GTFS-RT-', {
+      return new Response('404 not found GTFS-RT (service alerts & vehicle positions)', {
         status: 404,
         headers: { 'Content-Type': 'text/html' }
       });
