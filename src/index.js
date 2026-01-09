@@ -42,20 +42,20 @@ export default {
     }
     console.log(`[MT]> maxAgeInSec: '${maxAgeInSec}'.`);
     console.log(`[MT]> tryRefreshAfterInMs: '${tryRefreshAfterInMs}'.`);
-    // const agencyConfigs = {
+    const agencyConfigs = {
     //   "ca_chambly_richelieu_carignan_citcrc": { // exo CRC
     //     serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/alert?token=',
     //     serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/alert?token=${env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc}`,
     //     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=',
     //     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=${env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc}`
     //   },
-    //   "ca_richelieu_citvr": { // exo VR
-    //     serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=',
-    //     serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=${env.MT_GTFS_RT_ca_richelieu_citvr}`,
-    //     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=',
-    //     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=${env.MT_GTFS_RT_ca_richelieu_citvr}`
-    //   }
-    // };
+      "ca_richelieu_citvr": { // exo VR
+        serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=',
+        serviceAlertsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=' + env.MT_GTFS_RT_ca_richelieu_citvr,
+        vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=',
+        vehiclePositionsUrlWithSecret: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/vehicleposition?token=' + env.MT_GTFS_RT_ca_richelieu_citvr
+      }
+    };
     // const agencyConfig = agencyConfigs[agency];
     // console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
     // if (agencyConfig) {
