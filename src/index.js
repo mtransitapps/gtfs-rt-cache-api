@@ -58,7 +58,8 @@ export default {
     };
     const agencyConfig = agencyConfigs[agency];
     console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
-    // if (agencyConfig) {
+    if (agencyConfig) {
+      console.log(`[MT]> agencyConfig: FOUND.`);
     //   switch (urlType) {
     //     case SERVICE_ALERTS:
     //       apiUrl = serviceAlertsUrl || '';
@@ -74,7 +75,7 @@ export default {
     //   }
     //   console.log(`[MT]> apiUrl: '${apiUrl}'.`);
     //   console.log(`[MT]> apiUrlWithSecret: '${apiUrlWithSecret}'.`);
-    // }
+    }
     let apiUrl = '';
     let apiUrlWithSecret = '';
     let bearerToken = '';
