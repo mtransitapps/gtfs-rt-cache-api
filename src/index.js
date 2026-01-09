@@ -151,7 +151,7 @@ export default {
     }
     console.log(`[MT]> apiUrl: '${apiUrl}'`);
     if (apiUrl.length == 0) {
-      return new Response('404 not found GTFS-RT', {
+      return new Response('404 not found GTFS-RT-', {
         status: 404,
         headers: { 'Content-Type': 'text/html' }
       });
