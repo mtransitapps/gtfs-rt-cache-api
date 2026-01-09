@@ -122,7 +122,7 @@ export default {
     if (fetchResponse.status == 200) {
       const newResponse = new Response(fetchResponse.body);
       if (maxAgeInSec >= 0) {
-        let cacheControl = `s-maxage=${maxAgeInSec}`;
+        const cacheControl = `s-maxage=${maxAgeInSec}`;
         newResponse.headers.append("Cache-Control", cacheControl);
       }
       // console.log(`[MT]> newResponse.headers["Cache-Control"]: ${newResponse.headers.get("Cache-Control")}.`);
