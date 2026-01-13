@@ -76,7 +76,7 @@ export default {
     // DEBUG - START
     console.log(`[MT]> requestHeaderName: '${requestHeaderName}'`);
     if (true || requestHeaderName.length == 0) {
-      return new Response('404 not found GTFS-RT (service alerts & vehicle positions) [${requestHeaderValue.length}]:${requestHeaderName}.', {
+      return new Response(`404 not found GTFS-RT (service alerts & vehicle positions) [${requestHeaderValue.length}]:${requestHeaderName}.`, {
         status: 404,
         headers: { 'Content-Type': 'text/html' }
       });
