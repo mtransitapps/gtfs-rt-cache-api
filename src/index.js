@@ -50,6 +50,8 @@ export default {
     let apiUrl = '';
     let apiUrlWithSecret = '';
     let bearerToken = '';
+    let requestHeaderName = '';
+    let requestHeaderValue = '';
     const agencyConfig = agencyConfigs[agency];
     // console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
     if (agencyConfig) {
@@ -58,11 +60,15 @@ export default {
         case SERVICE_ALERTS:
           apiUrl = agencyConfig.serviceAlertsUrl || '';
           apiUrlWithSecret = agencyConfig.serviceAlertsUrlWithSecret || '';
+          requestHeaderName = agencyConfig.requestHeaderName || '';
+          requestHeaderValue = agencyConfig.requestHeaderValue || '';
           break;
         // TODO latter case TRIP_UPDATES:
         case VEHICLE_POSITIONS:
           apiUrl = agencyConfig.vehiclePositionsUrl || '';
           apiUrlWithSecret = agencyConfig.vehiclePositionsUrlWithSecret || '';
+          requestHeaderName = agencyConfig.requestHeaderName || '';
+          requestHeaderValue = agencyConfig.requestHeaderValue || '';
           break;
       }
       // console.log(`[MT]> apiUrl: '${apiUrl}'.`);
@@ -110,6 +116,9 @@ export default {
     requestHeaders.append("Content-Type", "application/x-protobuf");
     if (bearerToken.length > 0) {
       requestHeaders.append("Authorization", `Bearer ${bearerToken}`);
+    }
+    if (requestHeaderName.length > 0 && requestHeaderValue.length > 0) {
+      requestHeaders.append(requestHeaderName, requestHeaderValue);
     }
     const apiRequest = new Request(apiUrlWithSecret, {
       headers: requestHeaders
