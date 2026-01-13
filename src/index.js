@@ -67,21 +67,15 @@ export default {
         case VEHICLE_POSITIONS:
           apiUrl = agencyConfig.vehiclePositionsUrl || '';
           apiUrlWithSecret = agencyConfig.vehiclePositionsUrlWithSecret || '';
-          requestHeaderName = agencyConfig.requestHeaderName || '';
-          requestHeaderValue = agencyConfig.requestHeaderValue || '';
+          
           break;
       }
+      requestHeaderName = agencyConfig.requestHeaderName || '';
+      requestHeaderValue = agencyConfig.requestHeaderValue || '';
       // console.log(`[MT]> apiUrl: '${apiUrl}'.`);
+      // console.log(`[MT]> requestHeaderName: '${requestHeaderName}'`);
+      // console.log(`[MT]> requestHeaderValue: '${requestHeaderValue.length}'`);
     }
-    // // DEBUG - START
-    // console.log(`[MT]> requestHeaderName: '${requestHeaderName}'`);
-    // if (true || requestHeaderName.length == 0) {
-    //   return new Response(`404 not found GTFS-RT (service alerts & vehicle positions) [${requestHeaderValue.length}]:${requestHeaderName}.`, {
-    //     status: 404,
-    //     headers: { 'Content-Type': 'text/html' }
-    //   });
-    // }
-    // // DEBUG - END
     console.log(`[MT]> apiUrl: '${apiUrl}'`);
     if (apiUrl.length == 0) {
       return new Response('404 not found GTFS-RT (service alerts & vehicle positions)', {
