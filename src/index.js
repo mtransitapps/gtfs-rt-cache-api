@@ -60,14 +60,11 @@ export default {
         case SERVICE_ALERTS:
           apiUrl = agencyConfig.serviceAlertsUrl || '';
           apiUrlWithSecret = agencyConfig.serviceAlertsUrlWithSecret || '';
-          requestHeaderName = agencyConfig.requestHeaderName || '';
-          requestHeaderValue = agencyConfig.requestHeaderValue || '';
           break;
         // TODO latter case TRIP_UPDATES:
         case VEHICLE_POSITIONS:
           apiUrl = agencyConfig.vehiclePositionsUrl || '';
           apiUrlWithSecret = agencyConfig.vehiclePositionsUrlWithSecret || '';
-          
           break;
       }
       requestHeaderName = agencyConfig.requestHeaderName || '';
