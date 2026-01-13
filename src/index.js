@@ -73,6 +73,15 @@ export default {
       }
       // console.log(`[MT]> apiUrl: '${apiUrl}'.`);
     }
+    // DEBUG - START
+    console.log(`[MT]> requestHeaderName: '${requestHeaderName}'`);
+    if (true || requestHeaderName.length == 0) {
+      return new Response('404 not found GTFS-RT (service alerts & vehicle positions) [${requestHeaderValue.length}]:${requestHeaderName}.', {
+        status: 404,
+        headers: { 'Content-Type': 'text/html' }
+      });
+    }
+    // DEBUG - END
     console.log(`[MT]> apiUrl: '${apiUrl}'`);
     if (apiUrl.length == 0) {
       return new Response('404 not found GTFS-RT (service alerts & vehicle positions)', {
