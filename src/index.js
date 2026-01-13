@@ -50,6 +50,8 @@ export default {
     let apiUrl = '';
     let apiUrlWithSecret = '';
     let bearerToken = '';
+    let requestHeaderName = '';
+    let requestHeaderValue = '';
     const agencyConfig = agencyConfigs[agency];
     // console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
     if (agencyConfig) {
@@ -65,7 +67,11 @@ export default {
           apiUrlWithSecret = agencyConfig.vehiclePositionsUrlWithSecret || '';
           break;
       }
+      requestHeaderName = agencyConfig.requestHeaderName || '';
+      requestHeaderValue = agencyConfig.requestHeaderValue || '';
       // console.log(`[MT]> apiUrl: '${apiUrl}'.`);
+      // console.log(`[MT]> requestHeaderName: '${requestHeaderName}'`);
+      // console.log(`[MT]> requestHeaderValue: '${requestHeaderValue.length}'`);
     }
     console.log(`[MT]> apiUrl: '${apiUrl}'`);
     if (apiUrl.length == 0) {
@@ -110,6 +116,9 @@ export default {
     requestHeaders.append("Content-Type", "application/x-protobuf");
     if (bearerToken.length > 0) {
       requestHeaders.append("Authorization", `Bearer ${bearerToken}`);
+    }
+    if (requestHeaderName.length > 0 && requestHeaderValue.length > 0) {
+      requestHeaders.append(requestHeaderName, requestHeaderValue);
     }
     const apiRequest = new Request(apiUrlWithSecret, {
       headers: requestHeaders

@@ -47,6 +47,11 @@ export const getAgencyConfigs = (env) => ({
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/TRAINS/vehicleposition?token=',
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/TRAINS/vehicleposition?token=${env.MT_GTFS_RT_ca_montreal_amt}`
   },
+  "ca_montreal_stm": { // STM
+    vehiclePositionsUrl: 'https://api.stm.info/pub/od/gtfs-rt/ic/v2/vehiclePositions',
+    requestHeaderName: 'apiKey',
+    requestHeaderValue: env.MT_GTFS_RT_ca_montreal_stm
+  },
   "ca_richelieu_citvr": { // exo VR // min interval of 05 seconds between each call to service
     serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=',
     serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=${env.MT_GTFS_RT_ca_richelieu_citvr}`,
