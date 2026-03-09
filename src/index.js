@@ -40,7 +40,8 @@ export default {
       // TODO latter case TRIP_UPDATES:
       case VEHICLE_POSITIONS:
         maxAgeInSec = 3600; // 1h
-        tryRefreshAfterInMs = 30000; // 30 seconds
+        // tryRefreshAfterInMs = 30000; // 30 seconds
+        tryRefreshAfterInMs = 20000; // 20 seconds
         // TODO if API allows: tryRefreshAfterInMs = 10000; // 10 seconds
         break;
     }
