@@ -40,6 +40,7 @@ export default {
       case TRIP_UPDATES:
         maxAgeInSec = 3600; // 1h
         tryRefreshAfterInMs = 20000; // 20 seconds
+        break;
       case VEHICLE_POSITIONS:
         maxAgeInSec = 3600; // 1h
         // tryRefreshAfterInMs = 30000; // 30 seconds
