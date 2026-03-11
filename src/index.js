@@ -37,7 +37,10 @@ export default {
         maxAgeInSec = 86400; // 24h
         tryRefreshAfterInMs = 60000; // 1 minute
         break;
-      // TODO latter case TRIP_UPDATES:
+      case TRIP_UPDATES:
+        maxAgeInSec = 3600; // 1h
+        tryRefreshAfterInMs = 20000; // 20 seconds
+        break;
       case VEHICLE_POSITIONS:
         maxAgeInSec = 3600; // 1h
         // tryRefreshAfterInMs = 30000; // 30 seconds
@@ -62,7 +65,10 @@ export default {
           apiUrl = agencyConfig.serviceAlertsUrl || '';
           apiUrlWithSecret = agencyConfig.serviceAlertsUrlWithSecret || '';
           break;
-        // TODO latter case TRIP_UPDATES:
+        case TRIP_UPDATES:
+          apiUrl = agencyConfig.tripUpdatesUrl || '';
+          apiUrlWithSecret = agencyConfig.tripUpdatesUrlWithSecret || '';
+          break;
         case VEHICLE_POSITIONS:
           apiUrl = agencyConfig.vehiclePositionsUrl || '';
           apiUrlWithSecret = agencyConfig.vehiclePositionsUrlWithSecret || '';
