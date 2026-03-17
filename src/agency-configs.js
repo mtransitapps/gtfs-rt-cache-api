@@ -64,6 +64,8 @@ export const getAgencyConfigs = (env) => ({
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/TRAINS/vehicleposition?token=${env.MT_GTFS_RT_ca_montreal_amt}`
   },
   "ca_montreal_stm": { // STM // max 10 requests/second & 10,000 requests/day.
+    // not a real-GTFS-RT service alert feed but similar
+    serviceAlertsUrl: 'https://api.stm.info/pub/od/i3/v2/messages/etatservice',
     vehiclePositionsUrl: 'https://api.stm.info/pub/od/gtfs-rt/ic/v2/vehiclePositions',
     tripUpdatesUrl: 'https://api.stm.info/pub/od/gtfs-rt/ic/v2/tripUpdates',
     requestHeaderName: 'apiKey',
