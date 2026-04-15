@@ -42,7 +42,7 @@ export default {
     logDebug(`[MT]> urlType: '${urlType}'.`);
 
     let maxAgeInSec = -1; // none
-    let tryRefreshAfterInMs = 60000; // 1 minute
+    let tryRefreshAfterInMs = -1;
     switch (urlType) {
       case SERVICE_ALERTS:
         maxAgeInSec = 86400; // 24h
@@ -75,14 +75,17 @@ export default {
         case SERVICE_ALERTS:
           apiUrl = agencyConfig.serviceAlertsUrl || '';
           apiUrlWithSecret = agencyConfig.serviceAlertsUrlWithSecret || '';
+          tryRefreshAfterInMs = agencyConfig.serviceAlertsTryRefreshAfterInMs || tryRefreshAfterInMs;
           break;
         case TRIP_UPDATES:
           apiUrl = agencyConfig.tripUpdatesUrl || '';
           apiUrlWithSecret = agencyConfig.tripUpdatesUrlWithSecret || '';
+          tryRefreshAfterInMs = agencyConfig.tripUpdatesTryRefreshAfterInMs || tryRefreshAfterInMs;
           break;
         case VEHICLE_POSITIONS:
           apiUrl = agencyConfig.vehiclePositionsUrl || '';
           apiUrlWithSecret = agencyConfig.vehiclePositionsUrlWithSecret || '';
+          tryRefreshAfterInMs = agencyConfig.vehiclePositionsTryRefreshAfterInMs || tryRefreshAfterInMs;
           break;
       }
       requestHeaderName = agencyConfig.requestHeaderName || '';
@@ -92,8 +95,8 @@ export default {
       // logDebug(`[MT]> requestHeaderValue: '${requestHeaderValue.length}'`);
     }
     logDebug(`[MT]> apiUrl: '${apiUrl}'`);
-    if (apiUrl.length == 0) {
-      return new Response('404 not found GTFS-RT (service alerts & vehicle positions)', {
+    if (apiUrl.length == 0 || maxAgeInSec <= 0 || tryRefreshAfterInMs <= 0) {
+      return new Response('404 not found GTFS-RT (service alerts, trip updates & vehicle positions)', {
         status: 404,
         headers: { 'Content-Type': 'text/html' }
       });
