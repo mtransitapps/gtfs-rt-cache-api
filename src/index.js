@@ -18,16 +18,16 @@ const log = (message) => {
 
 export default {
   async fetch(request, env, ctx) {
-    // console.log(`[MT]> request url: '${request.url}'.`);
+    // logDebug(`[MT]> request url: '${request.url}'.`);
     const requestUrl = new URL(request.url);
-    // console.log(`[MT]> request url - host: '${requestUrl.host}'.`);
-    // console.log(`[MT]> request url - origin: '${requestUrl.origin}'.`);
-    // console.log(`[MT]> request url > search: '${requestUrl.search}'.`);
-    // console.log(`[MT]> request url > pathname: '${requestUrl.pathname}'.`);
+    // logDebug(`[MT]> request url - host: '${requestUrl.host}'.`);
+    // logDebug(`[MT]> request url - origin: '${requestUrl.origin}'.`);
+    // logDebug(`[MT]> request url > search: '${requestUrl.search}'.`);
+    // logDebug(`[MT]> request url > pathname: '${requestUrl.pathname}'.`);
     // const search = requestUrl.search;
     const pathname = requestUrl.pathname;
     const pathnameParts = pathname.split("/");
-    // console.log(`[MT]> request url > pathname parts[${pathnameParts.length}]: '${pathnameParts}'.`);
+    // logDebug(`[MT]> request url > pathname parts[${pathnameParts.length}]: '${pathnameParts}'.`);
 
     // /xx_city_agency/service-alerts
     // /xx_city_agency/trip-updates
@@ -38,8 +38,8 @@ export default {
 
     const agency = pathnameParts[1];
     const urlType = pathnameParts[2];
-    console.log(`[MT]> agency: '${agency}'.`);
-    console.log(`[MT]> urlType: '${urlType}'.`);
+    logDebug(`[MT]> agency: '${agency}'.`);
+    logDebug(`[MT]> urlType: '${urlType}'.`);
 
     let maxAgeInSec = -1; // none
     let tryRefreshAfterInMs = 60000; // 1 minute
@@ -59,8 +59,8 @@ export default {
         // TODO if API allows: tryRefreshAfterInMs = 10000; // 10 seconds
         break;
     }
-    console.log(`[MT]> maxAgeInSec: '${maxAgeInSec}'.`);
-    console.log(`[MT]> tryRefreshAfterInMs: '${tryRefreshAfterInMs}'.`);
+    logDebug(`[MT]> maxAgeInSec: '${maxAgeInSec}'.`);
+    logDebug(`[MT]> tryRefreshAfterInMs: '${tryRefreshAfterInMs}'.`);
     const agencyConfigs = getAgencyConfigs(env);
     let apiUrl = '';
     let apiUrlWithSecret = '';
@@ -68,9 +68,9 @@ export default {
     let requestHeaderName = '';
     let requestHeaderValue = '';
     const agencyConfig = agencyConfigs[agency];
-    // console.log(`[MT]> agencyConfig: '${agencyConfig}'.`);
+    // logDebug(`[MT]> agencyConfig: '${agencyConfig}'.`);
     if (agencyConfig) {
-      // console.log(`[MT]> agencyConfig: FOUND.`);
+      // logDebug(`[MT]> agencyConfig: FOUND.`);
       switch (urlType) {
         case SERVICE_ALERTS:
           apiUrl = agencyConfig.serviceAlertsUrl || '';
@@ -87,11 +87,11 @@ export default {
       }
       requestHeaderName = agencyConfig.requestHeaderName || '';
       requestHeaderValue = agencyConfig.requestHeaderValue || '';
-      // console.log(`[MT]> apiUrl: '${apiUrl}'.`);
-      // console.log(`[MT]> requestHeaderName: '${requestHeaderName}'`);
-      // console.log(`[MT]> requestHeaderValue: '${requestHeaderValue.length}'`);
+      // logDebug(`[MT]> apiUrl: '${apiUrl}'.`);
+      // logDebug(`[MT]> requestHeaderName: '${requestHeaderName}'`);
+      // logDebug(`[MT]> requestHeaderValue: '${requestHeaderValue.length}'`);
     }
-    console.log(`[MT]> apiUrl: '${apiUrl}'`);
+    logDebug(`[MT]> apiUrl: '${apiUrl}'`);
     if (apiUrl.length == 0) {
       return new Response('404 not found GTFS-RT (service alerts & vehicle positions)', {
         status: 404,
@@ -106,29 +106,29 @@ export default {
     const cache = caches.default;
     const cacheResponse = await cache.match(cacheKey);
     if (cacheResponse) {
-      console.log(`[MT]> Cache hit for: ${request.url} (${apiUrl}).`);
-      // console.log(`[MT]> cache response headers: ${cacheResponse.headers}.`);
+      log(`[MT]> Cache hit for: ${request.url} (${apiUrl}).`);
+      // logDebug(`[MT]> cache response headers: ${cacheResponse.headers}.`);
       const cacheTimestampString = cacheResponse.headers.get("X-MT-Timestamp");
-      // console.log(`[MT]> cach timestamp string: ${cacheTimestampString}.`);
+      // logDebug(`[MT]> cach timestamp string: ${cacheTimestampString}.`);
       if (cacheTimestampString == null) {
-        console.log(`[MT]> Returning cache hit (no timestamp)`);
+        log(`[MT]> Returning cache hit (no timestamp)`);
         return cacheResponse; // no cache timestamp -> return response
       } else if (cacheTimestampString != null) {
         const cacheTimestamp = parseInt(cacheTimestampString);
-        // console.log(`[MT]> cache timestamp: ${cacheTimestamp}.`);
-        // console.log(`[MT]> now: ${Date.now()}.`);
+        // logDebug(`[MT]> cache timestamp: ${cacheTimestamp}.`);
+        // logDebug(`[MT]> now: ${Date.now()}.`);
         const howLongSinceCachedInMs = Date.now() - cacheTimestamp;
-        // console.log(`[MT]> howLongSinceCachedInMs: ${howLongSinceCachedInMs}.`);
+        // logDebug(`[MT]> howLongSinceCachedInMs: ${howLongSinceCachedInMs}.`);
         if (howLongSinceCachedInMs < tryRefreshAfterInMs) {
-          console.log(`[MT]> Returning cache hit (still fresh ${ howLongSinceCachedInMs / 1000 } sec)`);
+          log(`[MT]> Returning cache hit (still fresh ${ howLongSinceCachedInMs / 1000 } sec)`);
           return cacheResponse; // to soon -> re-use cache
         } else {
-          console.log(`[MT]> Cache hit is ${ howLongSinceCachedInMs / 1000 } secs old, try to refresh...`);
+          log(`[MT]> Cache hit is ${ howLongSinceCachedInMs / 1000 } secs old, try to refresh...`);
         }
       }
     }
     if (!cacheResponse) {
-      console.log(`[MT]> NO Cache hit for: '${apiUrl}'.`);
+      log(`[MT]> NO Cache hit for: '${apiUrl}'.`);
     }
     const requestHeaders = new Headers();
     requestHeaders.append("Content-Type", "application/x-protobuf");
@@ -141,35 +141,35 @@ export default {
     const apiRequest = new Request(apiUrlWithSecret, {
       headers: requestHeaders
     });
-    console.log(`[MT]> Fetching from '${apiUrl})'...`);
+    logDebug(`[MT]> Fetching from '${apiUrl})'...`);
     const fetchResponse = await fetch(apiRequest);
-    console.log(`[MT]> Fetching from '${apiUrl})'... DONE`);
-    // console.log(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
-    // console.log(`[MT]> - fetched response status: ${fetchResponse.status}.`);
+    log(`[MT]> Fetching from '${apiUrl})'... DONE`);
+    // logDebug(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
+    // logDebug(`[MT]> - fetched response status: ${fetchResponse.status}.`);
     if (fetchResponse.status == 200) {
       const newResponse = new Response(fetchResponse.body);
       if (maxAgeInSec >= 0) {
         const cacheControl = `s-maxage=${maxAgeInSec}`;
         newResponse.headers.append("Cache-Control", cacheControl);
       }
-      // console.log(`[MT]> newResponse.headers["Cache-Control"]: ${newResponse.headers.get("Cache-Control")}.`);
+      // logDebug(`[MT]> newResponse.headers["Cache-Control"]: ${newResponse.headers.get("Cache-Control")}.`);
       newResponse.headers.append("X-MT-Timestamp", Date.now());
-      // console.log(`[MT]> newResponse.headers["X-MT-Timestamp"]: ${newResponse.headers.get("X-MT-Timestamp")}.`);
-      // console.log(`[MT]> newResponse.headers: ${newResponse.headers}.`);
+      // logDebug(`[MT]> newResponse.headers["X-MT-Timestamp"]: ${newResponse.headers.get("X-MT-Timestamp")}.`);
+      // logDebug(`[MT]> newResponse.headers: ${newResponse.headers}.`);
       ctx.waitUntil(cache.put(cacheKey, newResponse.clone()));
-      console.log(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
-      console.log(`[MT]> Returning new fetched & cached response`);
+      logDebug(`[MT]> Cache saved for: ${request.url} (${apiUrl}).`);
+      log(`[MT]> Returning new fetched & cached response`);
       return newResponse; // return new cached response
     } else {
       if (cacheResponse) {
-        console.log(`[MT]> Returning cache hit (fetch failed - ${fetchResponse.status})`);
+        log(`[MT]> Returning cache hit (fetch failed - ${fetchResponse.status})`);
         return cacheResponse; // return "older" cached response
       }
-      console.log(`[MT]> Returning failed (${fetchResponse.status}) fetched reponse`);
+      log(`[MT]> Returning failed (${fetchResponse.status}) fetched reponse`);
       return fetchResponse; // return fetch response w/ error
     }
     // } else {
-    // console.log(`[MT]> Cache hit for: ${request.url} (${apiUrl}).`);
+    // logDebug(`[MT]> Cache hit for: ${request.url} (${apiUrl}).`);
     // }
     // return response;
   }
