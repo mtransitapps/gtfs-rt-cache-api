@@ -1,5 +1,26 @@
 import { getAgencyConfigs } from './agency-configs';
 
+/** Set to true to enable debug logging during development. */
+const DEBUG_ENABLED = false;
+
+/**
+ * Logs a debug message only when DEBUG_ENABLED is true.
+ * @param {string} message - The debug message to log.
+ */
+const logDebug = (message) => {
+  if (DEBUG_ENABLED) {
+    console.log(message);
+  }
+};
+
+/**
+ * Logs a message for production-level observability.
+ * @param {string} message - The message to log.
+ */
+const log = (message) => {
+  console.log(message);
+};
+
 // Cloudflare Workers Preview URLs:
 // git branch push > workers preview url:
 // <branch_name>-gtfs-rt-cache-api.mtransit-apps.workers.dev
