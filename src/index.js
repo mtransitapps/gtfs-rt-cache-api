@@ -84,7 +84,7 @@ export default {
       // console.log(`[MT]> requestHeaderValue: '${requestHeaderValue.length}'`);
     }
     console.log(`[MT]> apiUrl: '${apiUrl}'`);
-    if (apiUrl.length == 0 || maxAgeInSec <= 0 || tryRefreshAfterInMs <= 0 || ) {
+    if (apiUrl.length == 0 || maxAgeInSec <= 0 || tryRefreshAfterInMs <= 0) {
       return new Response('404 not found GTFS-RT (service alerts, trip updates & vehicle positions)', {
         status: 404,
         headers: { 'Content-Type': 'text/html' }
