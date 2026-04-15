@@ -66,7 +66,7 @@ export const getAgencyConfigs = (env) => ({
   "ca_montreal_stm": { // STM // max 10 requests/second & 10,000 requests/day for all URLs
     // not a real-GTFS-RT service alert feed but similar
     serviceAlertsUrl: 'https://api.stm.info/pub/od/i3/v2/messages/etatservice',
-    serviceAlertsTryRefreshAfterInMs: 120000, // 2 minute
+    serviceAlertsTryRefreshAfterInMs: 120000, // 2 minutes
     vehiclePositionsUrl: 'https://api.stm.info/pub/od/gtfs-rt/ic/v2/vehiclePositions',
     vehiclePositionsTryRefreshAfterInMs: 30000, // 30 seconds
     tripUpdatesUrl: 'https://api.stm.info/pub/od/gtfs-rt/ic/v2/tripUpdates',
