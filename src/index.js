@@ -1,22 +1,12 @@
 import { getAgencyConfigs } from './agency-configs';
 
-/** Set to true to enable debug logging during development. */
-const DEBUG_ENABLED = false;
+const DEBUG_LOGS_ENABLED = false;
 
-/**
- * Logs a debug message only when DEBUG_ENABLED is true.
- * @param {string} message - The debug message to log.
- */
 const logDebug = (message) => {
-  if (DEBUG_ENABLED) {
-    console.log(message);
-  }
+  if (!DEBUG_LOGS_ENABLED) return;
+  console.log(message);
 };
 
-/**
- * Logs a message for production-level observability.
- * @param {string} message - The message to log.
- */
 const log = (message) => {
   console.log(message);
 };
