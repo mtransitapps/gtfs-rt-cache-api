@@ -113,5 +113,13 @@ export const getAgencyConfigs = (env) => ({
     tripUpdatesUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/tripupdate?token=${env.MT_GTFS_RT_ca_sud_ouest_citso}`,
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/vehicleposition?token=',
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/vehicleposition?token=${env.MT_GTFS_RT_ca_sud_ouest_citso}`
+  },
+  "ca_vancouver_translink": {
+    serviceAlertsUrl: 'https://gtfsapi.translink.ca/v3/gtfsalerts?apikey=',
+    serviceAlertsUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsalerts?apikey=${env.MT_GTFS_RT_ca_vancouver_transkink}`,
+    tripUpdatesUrl: 'https://gtfsapi.translink.ca/v3/gtfsrealtime?apikey=',
+    tripUpdatesUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsrealtime?apikey=${env.MT_GTFS_RT_ca_vancouver_transkink}`,
+    vehiclePositionsUrl: 'https://gtfsapi.translink.ca/v3/gtfsposition?apikey=',
+    vehiclePositionsUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsposition?apikey=${env.MT_GTFS_RT_ca_vancouver_transkink}`
   }
 });
