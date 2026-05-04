@@ -7,7 +7,7 @@ export const getAgencyConfigs = (env) => ({
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=',
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=${env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc}`
   },
-  "ca_gta_up_express": { // https://api.openmetrolinx.com/OpenDataAPI/
+  "ca_gta_up_express": { // https://api.openmetrolinx.com/OpenDataAPI
     serviceAlertsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/Alerts?key=',
     serviceAlertsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/Alerts?key=${env.MT_GTFS_RT_ca_gta_up_express}`,
     tripUpdatesUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/TripUpdates?key=',
