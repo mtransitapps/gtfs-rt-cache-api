@@ -116,10 +116,10 @@ export const getAgencyConfigs = (env) => ({
   },
   "ca_vancouver_translink": {
     serviceAlertsUrl: 'https://gtfsapi.translink.ca/v3/gtfsalerts?apikey=',
-    serviceAlertsUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsalerts?apikey=${env.MT_GTFS_RT_ca_vancouver_transkink}`,
+    serviceAlertsUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsalerts?apikey=${env.MT_GTFS_RT_ca_vancouver_translink}`,
     tripUpdatesUrl: 'https://gtfsapi.translink.ca/v3/gtfsrealtime?apikey=',
-    tripUpdatesUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsrealtime?apikey=${env.MT_GTFS_RT_ca_vancouver_transkink}`,
+    tripUpdatesUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsrealtime?apikey=${env.MT_GTFS_RT_ca_vancouver_translink}`,
     vehiclePositionsUrl: 'https://gtfsapi.translink.ca/v3/gtfsposition?apikey=',
-    vehiclePositionsUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsposition?apikey=${env.MT_GTFS_RT_ca_vancouver_transkink}`
+    vehiclePositionsUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsposition?apikey=${env.MT_GTFS_RT_ca_vancouver_translink}`
   }
 });
