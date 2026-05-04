@@ -90,7 +90,7 @@ export const getAgencyConfigs = (env) => ({
     requestHeaderName: 'apiKey',
     requestHeaderValue: env.MT_GTFS_RT_ca_montreal_stm
   },
-  "ca_ottawa_oc_transpo": {
+  "ca_ottawa_oc_transpo": { // https://nextrip-public-api.developer.azure-api.net/
     // 2026-05-04: no service alerts
     tripUpdatesUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-tp/beta/v1/TripUpdates',
     vehiclePositionsUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-vp/beta/v1/VehiclePositions',
