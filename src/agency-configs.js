@@ -90,6 +90,13 @@ export const getAgencyConfigs = (env) => ({
     requestHeaderName: 'apiKey',
     requestHeaderValue: env.MT_GTFS_RT_ca_montreal_stm
   },
+  "ca_ottawa_oc_transpo": {
+    // 2026-05-04: no service alerts
+    tripUpdatesUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-vp/beta/v1/TripUpdates',
+    vehiclePositionsUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-vp/beta/v1/VehiclePositions',
+    requestHeaderName: 'Ocp-Apim-Subscription-Key',
+    requestHeaderValue: env.MT_GTFS_RT_ca_ottawa_oc_transpo
+  },
   "ca_richelieu_citvr": { // exo VR // min interval of 05 seconds between each call to service
     serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=',
     serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=${env.MT_GTFS_RT_ca_richelieu_citvr}`,
