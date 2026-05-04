@@ -7,6 +7,22 @@ export const getAgencyConfigs = (env) => ({
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=',
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=${env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc}`
   },
+  "ca_gta_up_express": { // https://api.openmetrolinx.com/OpenDataAPI/
+    serviceAlertsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/Alerts?key=',
+    serviceAlertsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/Alerts?key=${env.MT_GTFS_RT_ca_gta_up_express}`,
+    tripUpdatesUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/TripUpdates?key=',
+    tripUpdatesUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/TripUpdates?key=${env.MT_GTFS_RT_ca_gta_up_express}`,
+    vehiclePositionsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/VehiclePosition?key=',
+    vehiclePositionsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/VehiclePosition?key=${env.MT_GTFS_RT_ca_gta_up_express}`
+  },
+  "ca_gtha_go_transit": { // https://api.openmetrolinx.com/OpenDataAPI/
+    serviceAlertsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/Alerts?key=',
+    serviceAlertsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/Alerts?key=${env.MT_GTFS_RT_ca_gtha_go_transit}`,
+    tripUpdatesUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/TripUpdates?key=',
+    tripUpdatesUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/TripUpdates?key=${env.MT_GTFS_RT_ca_gtha_go_transit}`,
+    vehiclePositionsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/VehiclePositions?key=',
+    vehiclePositionsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/VehiclePositions?key=${env.MT_GTFS_RT_ca_gtha_go_transit}`
+  },
   "ca_l_assomption_mrclasso": { // exo LASSO // min interval of 05 seconds between each call to service
     serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLASSO/alert?token=',
     serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/MRCLASSO/alert?token=${env.MT_GTFS_RT_ca_l_assomption_mrclasso}`,
