@@ -92,7 +92,7 @@ export const getAgencyConfigs = (env) => ({
   },
   "ca_ottawa_oc_transpo": {
     // 2026-05-04: no service alerts
-    tripUpdatesUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-vp/beta/v1/TripUpdates',
+    tripUpdatesUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-tp/beta/v1/TripUpdates',
     vehiclePositionsUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-vp/beta/v1/VehiclePositions',
     requestHeaderName: 'Ocp-Apim-Subscription-Key',
     requestHeaderValue: env.MT_GTFS_RT_ca_ottawa_oc_transpo
