@@ -1,5 +1,5 @@
 import { getAgencyConfigs } from './agency-configs';
-import { createHash } from 'crypto';
+const crypto = require('crypto');
 
 const DEBUG_LOGS_ENABLED = false;
 
