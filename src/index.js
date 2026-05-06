@@ -1,5 +1,5 @@
 import { getAgencyConfigs } from './agency-configs';
-import { createHash } from 'node:crypto';
+import { createHash } from 'crypto';
 
 const DEBUG_LOGS_ENABLED = false;
 
