@@ -1,4 +1,5 @@
 import { getAgencyConfigs } from './agency-configs';
+import { createHash } from 'node:crypto';
 
 const DEBUG_LOGS_ENABLED = false;
 
@@ -65,6 +66,7 @@ export default {
     let apiUrl = '';
     let apiUrlWithSecret = '';
     let bearerToken = '';
+    let hashSecret = '';
     let requestHeaderName = '';
     let requestHeaderValue = '';
     const agencyConfig = agencyConfigs[agency];
@@ -90,6 +92,7 @@ export default {
       }
       requestHeaderName = agencyConfig.requestHeaderName || '';
       requestHeaderValue = agencyConfig.requestHeaderValue || '';
+      hashSecret = agencyConfig.hashSecret || '';
       // logDebug(`[MT]> apiUrl: '${apiUrl}'.`);
       // logDebug(`[MT]> requestHeaderName: '${requestHeaderName}'`);
       // logDebug(`[MT]> requestHeaderValue: '${requestHeaderValue.length}'`);
@@ -140,6 +143,14 @@ export default {
     }
     if (requestHeaderName.length > 0 && requestHeaderValue.length > 0) {
       requestHeaders.append(requestHeaderName, requestHeaderValue);
+    }
+    if (hashSecret.length > 0) {
+      // https://www.sto.ca/site/assets/files/1533/documentation_dev_gtfsrt.pdf
+      const now = new Date();
+      const date_iso8601 = now.toISOString().replace(/[ -:]/g,'').split ('.')[0].slice(0,-2) + 'Z';
+      const salted_secret = hashSecret + date_iso8601;
+      const hash_value = createHash('sha256').update(salted_secret,'utf8').digest('hex').toUpperCase();
+      apiUrlWithSecret = apiUrlWithSecret.replace('MtHashSecretAndDate', hash_value);
     }
     const apiRequest = new Request(apiUrlWithSecret, {
       headers: requestHeaders
