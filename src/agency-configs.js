@@ -7,6 +7,34 @@ export const getAgencyConfigs = (env) => ({
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=',
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=${env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc}`
   },
+  "ca_gatineau_sto": { // STO // RT file generated every 30 secs | max 120 downloads / 10 minutes // https://www.sto.ca/en/business/developer-space-open-data/
+    hashSecret: env.MT_GTFS_RT_ca_gatineau_sto_secret,
+    serviceAlertsUrl: 'https://gtfs.sto.ca/download.php?file=alert',
+    serviceAlertsUrlWithSecret: `https://gtfs.sto.ca/download.php?file=alert&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
+    serviceAlertsTryRefreshAfterInMs: 30000, // 30 seconds
+    tripUpdatesUrl: 'https://gtfs.sto.ca/download.php?file=trip',
+    tripUpdatesUrlWithSecret: `https://gtfs.sto.ca/download.php?file=trip&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
+    tripUpdatesTryRefreshAfterInMs: 30000, // 30 seconds
+    vehiclePositionsUrl: 'https://gtfs.sto.ca/download.php?file=vehicule',
+    vehiclePositionsUrlWithSecret: `https://gtfs.sto.ca/download.php?file=vehicule&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
+    vehiclePositionsTryRefreshAfterInMs: 30000, // 30 seconds
+  },
+  "ca_gta_up_express": { // UP Express // https://api.openmetrolinx.com/OpenDataAPI
+    serviceAlertsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/Alerts?key=',
+    serviceAlertsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/Alerts?key=${env.MT_GTFS_RT_ca_gta_up_express}`,
+    tripUpdatesUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/TripUpdates?key=',
+    tripUpdatesUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/TripUpdates?key=${env.MT_GTFS_RT_ca_gta_up_express}`,
+    vehiclePositionsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/VehiclePosition?key=',
+    vehiclePositionsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/VehiclePosition?key=${env.MT_GTFS_RT_ca_gta_up_express}`
+  },
+  "ca_gtha_go_transit": { // GO Transit // https://api.openmetrolinx.com/OpenDataAPI
+    serviceAlertsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/Alerts?key=',
+    serviceAlertsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/Alerts?key=${env.MT_GTFS_RT_ca_gtha_go_transit}`,
+    tripUpdatesUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/TripUpdates?key=',
+    tripUpdatesUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/TripUpdates?key=${env.MT_GTFS_RT_ca_gtha_go_transit}`,
+    vehiclePositionsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/VehiclePositions?key=',
+    vehiclePositionsUrlWithSecret: `https://api.openmetrolinx.com/OpenDataAPI/api/V1/Gtfs.proto/Feed/VehiclePositions?key=${env.MT_GTFS_RT_ca_gtha_go_transit}`
+  },
   "ca_l_assomption_mrclasso": { // exo LASSO // min interval of 05 seconds between each call to service
     serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/MRCLASSO/alert?token=',
     serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/MRCLASSO/alert?token=${env.MT_GTFS_RT_ca_l_assomption_mrclasso}`,
@@ -74,6 +102,13 @@ export const getAgencyConfigs = (env) => ({
     requestHeaderName: 'apiKey',
     requestHeaderValue: env.MT_GTFS_RT_ca_montreal_stm
   },
+  "ca_ottawa_oc_transpo": { // https://nextrip-public-api.developer.azure-api.net/
+    // 2026-05-04: no service alerts
+    tripUpdatesUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-tp/beta/v1/TripUpdates',
+    vehiclePositionsUrl: 'https://nextrip-public-api.azure-api.net/octranspo/gtfs-rt-vp/beta/v1/VehiclePositions',
+    requestHeaderName: 'Ocp-Apim-Subscription-Key',
+    requestHeaderValue: env.MT_GTFS_RT_ca_ottawa_oc_transpo
+  },
   "ca_richelieu_citvr": { // exo VR // min interval of 05 seconds between each call to service
     serviceAlertsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=',
     serviceAlertsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITVR/alert?token=${env.MT_GTFS_RT_ca_richelieu_citvr}`,
@@ -113,5 +148,13 @@ export const getAgencyConfigs = (env) => ({
     tripUpdatesUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/tripupdate?token=${env.MT_GTFS_RT_ca_sud_ouest_citso}`,
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/vehicleposition?token=',
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITSO/vehicleposition?token=${env.MT_GTFS_RT_ca_sud_ouest_citso}`
+  },
+  "ca_vancouver_translink": {
+    serviceAlertsUrl: 'https://gtfsapi.translink.ca/v3/gtfsalerts?apikey=',
+    serviceAlertsUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsalerts?apikey=${env.MT_GTFS_RT_ca_vancouver_translink}`,
+    tripUpdatesUrl: 'https://gtfsapi.translink.ca/v3/gtfsrealtime?apikey=',
+    tripUpdatesUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsrealtime?apikey=${env.MT_GTFS_RT_ca_vancouver_translink}`,
+    vehiclePositionsUrl: 'https://gtfsapi.translink.ca/v3/gtfsposition?apikey=',
+    vehiclePositionsUrlWithSecret: `https://gtfsapi.translink.ca/v3/gtfsposition?apikey=${env.MT_GTFS_RT_ca_vancouver_translink}`
   }
 });

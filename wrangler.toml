@@ -2,5 +2,31 @@ name = "gtfs-rt-cache-api"
 main = "src/index.js"
 compatibility_date = "2025-04-03"
 
+compatibility_flags = ["nodejs_compat"]
+
 [observability]
 enabled = true
+
+[secrets]
+required = [ 
+    "MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc", 
+    "MT_GTFS_RT_ca_gatineau_sto",
+    "MT_GTFS_RT_ca_gatineau_sto_secret",
+    "MT_GTFS_RT_ca_gta_up_express",
+    "MT_GTFS_RT_ca_gtha_go_transit",
+    "MT_GTFS_RT_ca_l_assomption_mrclasso",
+    "MT_GTFS_RT_ca_la_presqu_ile_citpi",
+    "MT_GTFS_RT_ca_laurentides_citla",
+    "MT_GTFS_RT_ca_le_richelain_citlr",
+    "MT_GTFS_RT_ca_les_moulins_mrclm",
+    "MT_GTFS_RT_ca_longueuil_rtl",
+    "MT_GTFS_RT_ca_montreal_amt",
+    "MT_GTFS_RT_ca_montreal_stm",
+    "MT_GTFS_RT_ca_ottawa_oc_transpo",
+    "MT_GTFS_RT_ca_richelieu_citvr",
+    "MT_GTFS_RT_ca_sherbrooke_sts",
+    "MT_GTFS_RT_ca_sorel_varennes_citsv",
+    "MT_GTFS_RT_ca_ste_julie_omitsju",
+    "MT_GTFS_RT_ca_sud_ouest_citso",
+    "MT_GTFS_RT_ca_vancouver_translink",
+]
