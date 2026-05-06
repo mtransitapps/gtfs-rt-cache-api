@@ -1,5 +1,5 @@
 import { getAgencyConfigs } from './agency-configs';
-const crypto = require('crypto');
+import { createHash } from 'node:crypto';
 
 const DEBUG_LOGS_ENABLED = false;
 
@@ -147,7 +147,8 @@ export default {
     if (hashSecret.length > 0) {
       // https://www.sto.ca/site/assets/files/1533/documentation_dev_gtfsrt.pdf
       const now = new Date();
-      const date_iso8601 = now.toISOString().replace(/[ -:]/g,'').split ('.')[0].slice(0,-2) + 'Z';
+      const date_iso8601 = now.toISOString()
+        .replace(/[-:]/g, '').split('.')[0].slice(0,-2) + 'Z'; // yyyyMMdd'T'HHmm'Z
       const salted_secret = hashSecret + date_iso8601;
       const hash_value = createHash('sha256').update(salted_secret,'utf8').digest('hex').toUpperCase();
       apiUrlWithSecret = apiUrlWithSecret.replace('MtHashSecretAndDate', hash_value);

@@ -2,5 +2,7 @@ name = "gtfs-rt-cache-api"
 main = "src/index.js"
 compatibility_date = "2025-04-03"
 
+compatibility_flags = ["nodejs_compat"]
+
 [observability]
 enabled = true
