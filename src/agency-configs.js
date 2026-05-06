@@ -9,11 +9,11 @@ export const getAgencyConfigs = (env) => ({
   },
   "ca_gatineau_sto": { // STO // RT file genererated every 30 secs | max 120 downloads / 10 minutes // https://www.sto.ca/en/business/developer-space-open-data/
     hashSecret: env.MT_GTFS_RT_ca_gatineau_sto_secret,
-    serviceAlertsUrl: 'https://gtfs.sto.ca/download.php?file=alert&key=%1$s&hash=%2$s',
+    serviceAlertsUrl: 'https://gtfs.sto.ca/download.php?file=alert',
     serviceAlertsUrlWithSecret: `https://gtfs.sto.ca/download.php?file=alert&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
-    tripUpdatesUrl: 'https://gtfs.sto.ca/download.php?file=trip&key=%1$s&hash=%2$s',
+    tripUpdatesUrl: 'https://gtfs.sto.ca/download.php?file=trip',
     tripUpdatesUrlWithSecret: `https://gtfs.sto.ca/download.php?file=trip&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
-    vehiclePositionsUrl: 'https://gtfs.sto.ca/download.php?file=vehicule&key=%1$s&hash=%2$s',
+    vehiclePositionsUrl: 'https://gtfs.sto.ca/download.php?file=vehicule',
     vehiclePositionsUrlWithSecret: `https://gtfs.sto.ca/download.php?file=vehicule&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`
   },
   "ca_gta_up_express": { // UP Express // https://api.openmetrolinx.com/OpenDataAPI/
