@@ -7,7 +7,7 @@ export const getAgencyConfigs = (env) => ({
     vehiclePositionsUrl: 'https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=',
     vehiclePositionsUrlWithSecret: `https://exo.chrono-saeiv.com/api/opendata/v1/CITCRC/vehicleposition?token=${env.MT_GTFS_RT_ca_chambly_richelieu_carignan_citcrc}`
   },
-  "ca_gatineau_sto": { // STO // RT file genererated every 30 secs | max 120 downloads / 10 minutes // https://www.sto.ca/en/business/developer-space-open-data/
+  "ca_gatineau_sto": { // STO // RT file generated every 30 secs | max 120 downloads / 10 minutes // https://www.sto.ca/en/business/developer-space-open-data/
     hashSecret: env.MT_GTFS_RT_ca_gatineau_sto_secret,
     serviceAlertsUrl: 'https://gtfs.sto.ca/download.php?file=alert',
     serviceAlertsUrlWithSecret: `https://gtfs.sto.ca/download.php?file=alert&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
