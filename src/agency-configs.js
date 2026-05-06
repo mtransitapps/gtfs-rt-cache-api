@@ -11,10 +11,13 @@ export const getAgencyConfigs = (env) => ({
     hashSecret: env.MT_GTFS_RT_ca_gatineau_sto_secret,
     serviceAlertsUrl: 'https://gtfs.sto.ca/download.php?file=alert',
     serviceAlertsUrlWithSecret: `https://gtfs.sto.ca/download.php?file=alert&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
+    serviceAlertsTryRefreshAfterInMs: 30000, // 30 seconds
     tripUpdatesUrl: 'https://gtfs.sto.ca/download.php?file=trip',
     tripUpdatesUrlWithSecret: `https://gtfs.sto.ca/download.php?file=trip&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
+    tripUpdatesTryRefreshAfterInMs: 30000, // 30 seconds
     vehiclePositionsUrl: 'https://gtfs.sto.ca/download.php?file=vehicule',
-    vehiclePositionsUrlWithSecret: `https://gtfs.sto.ca/download.php?file=vehicule&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`
+    vehiclePositionsUrlWithSecret: `https://gtfs.sto.ca/download.php?file=vehicule&key=${env.MT_GTFS_RT_ca_gatineau_sto}&hash=MtHashSecretAndDate`,
+    vehiclePositionsTryRefreshAfterInMs: 30000, // 30 seconds
   },
   "ca_gta_up_express": { // UP Express // https://api.openmetrolinx.com/OpenDataAPI
     serviceAlertsUrl: 'https://api.openmetrolinx.com/OpenDataAPI/api/V1/UP/Gtfs.proto/Feed/Alerts?key=',
