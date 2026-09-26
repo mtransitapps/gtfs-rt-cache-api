@@ -165,7 +165,7 @@ export default {
     // logDebug(`[MT]> - fetched response status: ${fetchResponse.status}.`);
     // if (DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS) {
       // if (fetchResponse.status != 200) {
-        return new Response(`${fetchResponse.status} from '${apiUrl} (${apiUrlWithSecret.length}: last 3 characters: ${apiUrlWithSecret.slice(-3)})'`, {
+        return new Response(`${fetchResponse.status} from ${apiUrl} (${apiUrlWithSecret.length}: last 3 characters: ${apiUrlWithSecret.slice(-3)})`, {
           status: 404,
           headers: { 'Content-Type': 'text/html' }
         });
