@@ -2,6 +2,8 @@ import { getAgencyConfigs } from './agency-configs';
 import { createHash } from 'node:crypto';
 
 const DEBUG_LOGS_ENABLED = false;
+// const DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS = false;
+const DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS = true; // DEBUG
 
 const logDebug = (message) => {
   if (!DEBUG_LOGS_ENABLED) return;
@@ -161,6 +163,14 @@ export default {
     log(`[MT]> Fetching from '${apiUrl}' (${apiUrlWithSecret.length})... DONE`);
     // logDebug(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
     // logDebug(`[MT]> - fetched response status: ${fetchResponse.status}.`);
+    if (DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS) {
+      if (fetchResponse.status != 200) {
+        return new Response(`${fetchResponse.status} from '${apiUrl} (${apiUrlWithSecret.length}: last 3 characters: ${apiUrlWithSecret.slice(-3)})'`, {
+          status: fetchResponse.status,
+          headers: { 'Content-Type': 'text/html' }
+        });
+      }
+    }
     if (fetchResponse.status == 200) {
       const newResponse = new Response(fetchResponse.body);
       if (maxAgeInSec >= 0) {
