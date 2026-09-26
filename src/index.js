@@ -164,14 +164,17 @@ export default {
     // logDebug(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
     // logDebug(`[MT]> - fetched response status: ${fetchResponse.status}.`);
     if (DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS && fetchResponse.status != 200) {
-      const upstreamBody = (await fetchResponse.text()).slice(0, 500);
-      return new Response(
-        `${fetchResponse.status} ${fetchResponse.statusText} from ${apiUrl}\n`
-        + `secret URL length: ${apiUrlWithSecret.length}, last 3 chars: ${JSON.stringify(apiUrlWithSecret.slice(-3))}\n`
-        + `upstream headers: ${JSON.stringify([...fetchResponse.headers])}\n`
-        + `upstream body: ${upstreamBody}`, {
-        status: 404,
-        headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }
+      return Response.json({
+        status: "error",
+        upstreamStatus: fetchResponse.status,
+        upstreamStatusText: fetchResponse.statusText,
+        apiUrl,
+        secretUrlLength: apiUrlWithSecret.length,
+        upstreamHeaders: Object.fromEntries(fetchResponse.headers),
+        upstreamBody: (await fetchResponse.text()).slice(0, 500),
+      }, {
+        status: fetchResponse.status,
+        headers: { 'Cache-Control': 'no-store' }
       });
     }
     if (fetchResponse.status == 200) {
