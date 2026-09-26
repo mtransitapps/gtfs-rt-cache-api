@@ -134,7 +134,7 @@ export default {
       }
     }
     if (!cacheResponse) {
-      log(`[MT]> NO Cache hit for: '${apiUrl}'.`);
+      log(`[MT]> NO cache hit for: '${apiUrl}'.`);
     }
     const requestHeaders = new Headers();
     requestHeaders.append("Content-Type", "application/x-protobuf");
@@ -156,9 +156,9 @@ export default {
     const apiRequest = new Request(apiUrlWithSecret, {
       headers: requestHeaders
     });
-    logDebug(`[MT]> Fetching from '${apiUrl})'...`);
+    logDebug(`[MT]> Fetching from '${apiUrl}' (${apiUrlWithSecret.length})...`);
     const fetchResponse = await fetch(apiRequest);
-    log(`[MT]> Fetching from '${apiUrl})'... DONE`);
+    log(`[MT]> Fetching from '${apiUrl}' (${apiUrlWithSecret.length})... DONE`);
     // logDebug(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
     // logDebug(`[MT]> - fetched response status: ${fetchResponse.status}.`);
     if (fetchResponse.status == 200) {
