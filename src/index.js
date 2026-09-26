@@ -138,7 +138,8 @@ export default {
       log(`[MT]> NO cache hit for: '${apiUrl}'.`);
     }
     const requestHeaders = new Headers();
-    requestHeaders.append("Content-Type", "application/x-protobuf");
+    // Warning: some servers may reject requests with the "Content-Type" header set to "application/x-protobuf".
+    // requestHeaders.append("Content-Type", "application/x-protobuf");
     if (bearerToken.length > 0) {
       requestHeaders.append("Authorization", `Bearer ${bearerToken}`);
     }
