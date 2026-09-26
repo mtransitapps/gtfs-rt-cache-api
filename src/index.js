@@ -2,6 +2,7 @@ import { getAgencyConfigs } from './agency-configs';
 import { createHash } from 'node:crypto';
 
 const DEBUG_LOGS_ENABLED = false;
+const DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS = false;
 
 const logDebug = (message) => {
   if (!DEBUG_LOGS_ENABLED) return;
@@ -134,7 +135,7 @@ export default {
       }
     }
     if (!cacheResponse) {
-      log(`[MT]> NO Cache hit for: '${apiUrl}'.`);
+      log(`[MT]> NO cache hit for: '${apiUrl}'.`);
     }
     const requestHeaders = new Headers();
     requestHeaders.append("Content-Type", "application/x-protobuf");
@@ -156,11 +157,22 @@ export default {
     const apiRequest = new Request(apiUrlWithSecret, {
       headers: requestHeaders
     });
-    logDebug(`[MT]> Fetching from '${apiUrl})'...`);
+    logDebug(`[MT]> Fetching from '${apiUrl}' (${apiUrlWithSecret.length})...`);
     const fetchResponse = await fetch(apiRequest);
-    log(`[MT]> Fetching from '${apiUrl})'... DONE`);
+    log(`[MT]> Fetching from '${apiUrl}' (${apiUrlWithSecret.length})... DONE`);
     // logDebug(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
     // logDebug(`[MT]> - fetched response status: ${fetchResponse.status}.`);
+    if (DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS && fetchResponse.status != 200) {
+      const upstreamBody = (await fetchResponse.text()).slice(0, 500);
+      return new Response(
+        `${fetchResponse.status} ${fetchResponse.statusText} from ${apiUrl}\n`
+        + `secret URL length: ${apiUrlWithSecret.length}, last 3 chars: ${JSON.stringify(apiUrlWithSecret.slice(-3))}\n`
+        + `upstream headers: ${JSON.stringify([...fetchResponse.headers])}\n`
+        + `upstream body: ${upstreamBody}`, {
+        status: 404,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }
+      });
+    }
     if (fetchResponse.status == 200) {
       const newResponse = new Response(fetchResponse.body);
       if (maxAgeInSec >= 0) {
