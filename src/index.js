@@ -163,14 +163,17 @@ export default {
     log(`[MT]> Fetching from '${apiUrl}' (${apiUrlWithSecret.length})... DONE`);
     // logDebug(`[MT]> - fetched response headers: ${fetchResponse.headers}.`);
     // logDebug(`[MT]> - fetched response status: ${fetchResponse.status}.`);
-    // if (DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS) {
-      // if (fetchResponse.status != 200) {
-        return new Response(`${fetchResponse.status} from ${apiUrl} (${apiUrlWithSecret.length}: last 3 characters: ${apiUrlWithSecret.slice(-3)})`, {
-          status: 404,
-          headers: { 'Content-Type': 'text/html' }
-        });
-      // }
-    // }
+    if (DEBUG_PREVIEW_URLS_RETURN_ERROR_DETAILS && fetchResponse.status != 200) {
+      const upstreamBody = (await fetchResponse.text()).slice(0, 500);
+      return new Response(
+        `${fetchResponse.status} ${fetchResponse.statusText} from ${apiUrl}\n`
+        + `secret URL length: ${apiUrlWithSecret.length}, last 3 chars: ${JSON.stringify(apiUrlWithSecret.slice(-3))}\n`
+        + `upstream headers: ${JSON.stringify([...fetchResponse.headers])}\n`
+        + `upstream body: ${upstreamBody}`, {
+        status: 404,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }
+      });
+    }
     if (fetchResponse.status == 200) {
       const newResponse = new Response(fetchResponse.body);
       if (maxAgeInSec >= 0) {
